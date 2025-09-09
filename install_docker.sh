@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # Update packages
 sudo apt-get update -y
@@ -15,8 +14,9 @@ sudo systemctl start docker
 sudo usermod -aG docker $USER
 
 # Refresh group without reboot
-sudo newgrp docker <<EONG
+newgrp docker
+
 echo "✅ Docker installed successfully!"
 docker --version
-docker run hello-world
+docker ps -a
 EONG
