@@ -13,6 +13,13 @@ sudo systemctl start docker
 
 # Add current user to docker group
 sudo usermod -aG docker $USER
+newgrp docker
+
+cd ..
+rm -rf easy-docker-installation-/
+sudo apt-get remove -y git
+sudo apt-get autoremove -y
+echo "✅ Cleanup completed!"
 
 # Start a new shell with docker group
 newgrp docker <<EOF
@@ -22,15 +29,7 @@ newgrp docker <<EOF
   newgrp docker
 EOF
 
-newgrp docker
 
 
-# Clean up: remove git and this cloned folder
-cd ..
-rm -rf easy-docker-installation-/
-sudo apt-get remove -y git
-sudo apt-get autoremove -y
-
-echo "✅ Cleanup completed!"
 
 
