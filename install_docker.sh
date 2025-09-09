@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Update packages
 sudo apt-get update -y
@@ -13,10 +14,9 @@ sudo systemctl start docker
 # Add current user to docker group
 sudo usermod -aG docker $USER
 
-# Refresh group without reboot
-newgrp docker
-
-echo "✅ Docker installed successfully!"
-docker --version
-docker ps -a
-EONG
+# Start a new shell with docker group
+newgrp docker <<EOF
+  echo "✅ Docker installed successfully!"
+  docker --version
+  docker ps
+EOF
