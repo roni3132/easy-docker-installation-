@@ -19,4 +19,18 @@ newgrp docker <<EOF
   echo "✅ Docker installed successfully!"
   docker --version
   docker ps
+  newgrp docker
 EOF
+
+newgrp docker
+
+
+# Clean up: remove git and this cloned folder
+cd ..
+rm -rf easy-docker-installation-/
+sudo apt-get remove -y git
+sudo apt-get autoremove -y
+
+echo "✅ Cleanup completed!"
+
+
