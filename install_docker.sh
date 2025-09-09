@@ -15,7 +15,7 @@ sudo systemctl start docker
 sudo usermod -aG docker $USER
 
 # Refresh group without reboot
-newgrp docker <<EONG
+sudo newgrp docker <<EONG
 echo "✅ Docker installed successfully!"
 docker --version
 docker run hello-world
