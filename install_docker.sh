@@ -1,35 +1,35 @@
 #!/bin/bash
 set -e
 
-# Update packages
-sudo apt-get update -y
+# Clone the repository
+git clone https://github.com/roni3132/easy-docker-installation-.git
+cd easy-docker-installation-/
 
-# Install docker.io package
+# Update and install Docker
+sudo apt-get update -y
 sudo apt-get install -y docker.io
 
-# Enable and start docker service
-sudo systemctl enable docker
-sudo systemctl start docker
+# Start and enable Docker service
+sudo systemctl enable --now docker
 
-# Add current user to docker group
+# Add user to docker group
 sudo usermod -aG docker $USER
-newgrp docker
 
-cd ..
-rm -rf easy-docker-installation-/
-sudo apt-get remove -y git
-sudo apt-get autoremove -y
-echo "✅ Cleanup completed!"
-
-# Start a new shell with docker group
-newgrp docker <<EOF
-  echo "✅ Docker installed successfully!"
-  docker --version
-  docker ps
-  newgrp docker
-EOF
-
-
-
-
-
+# Refresh group membership without reboot using sg command
+exec sg docker -c "
+    # Cleanup - remove the repository and exit to original directory
+    cd ~
+    rm -rf easy-docker-installation-/
+    
+    # Remove git if it was installed specifically for this script
+    sudo apt-get remove -y git
+    sudo apt-get autoremove -y
+    
+    echo '✅ Docker installed successfully!'
+    docker --version
+    docker ps
+    echo '✅ Cleanup completed!'
+    
+    # Continue with docker group active
+    bash
+"
