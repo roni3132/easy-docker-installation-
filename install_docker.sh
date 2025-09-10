@@ -21,10 +21,6 @@ exec sg docker -c "
     cd ~
     rm -rf easy-docker-installation-/
     
-    # Remove git if it was installed specifically for this script
-    sudo apt-get remove -y git
-    sudo apt-get autoremove -y
-    
     echo '✅ Docker installed successfully!'
     docker --version
     docker ps
