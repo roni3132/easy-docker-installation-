@@ -17,7 +17,7 @@ A simple Bash script to **install Docker** on Ubuntu, add the current user to th
 Clone the repo or copy the script:
 
 ```bash
-git clone [git@github.com:roni3132/easy-installation.git](https://github.com/roni3132/easy-installation.git)
+git clone https://github.com/roni3132/easy-installation.git
 cd easy-docker-installation-/
 chmod +x install_docker.sh
 ./install_docker.sh
