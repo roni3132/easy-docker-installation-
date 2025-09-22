@@ -18,6 +18,6 @@ Clone the repo or copy the script:
 
 ```bash
 git clone https://github.com/roni3132/easy-installation.git
-cd easy-docker-installation-/
+cd easy-installation/
 chmod +x install_docker.sh
 ./install_docker.sh
